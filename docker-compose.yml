@@ -15,6 +15,6 @@ networks:
 
 
 
-// docker compose up dev-db -d 
-// docker logs {containerid}
-// npx prisma init 
+# docker compose up dev-db -d 
+# docker logs {containerid}
+# npx prisma init 
