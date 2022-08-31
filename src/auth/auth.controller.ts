@@ -1,25 +1,27 @@
-import { AuthDto } from './dto';
 import { AuthService } from './auth.service';
-import { BadRequestException, Body, Controller, Get, Post, Req } from "@nestjs/common";
-import { Request } from 'express';
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { LoginDto, RegisterDto } from './dto';
 
 @Controller('auth')
 export class AuthController{
     constructor(private readonly authService:AuthService){}
     
     @Post('signin')
-    login(@Body() dto:AuthDto){
-        this.authService.login(dto);
+    login(@Body() dto:LoginDto){
+        let data = this.authService.login(dto);
+        return data;
     }
 
     @Post('signup')
-    signup(@Body() dto:AuthDto){
-        this.authService.signUp(dto);
+    signup(@Body() dto:RegisterDto){
+        let data = this.authService.register(dto);
+        return data;
     }
 
     @Get('getlist')
     getlist(){
-        return 'liste getirildi'
+        let users = this.authService.getList();
+        return users;
     }
 
 }
