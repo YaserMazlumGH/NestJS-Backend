@@ -1,11 +1,12 @@
 import { AuthService } from './auth.service';
-import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req } from "@nestjs/common";
 import { LoginDto, RegisterDto } from './dto';
 
 @Controller('auth')
 export class AuthController{
     constructor(private readonly authService:AuthService){}
     
+    @HttpCode(HttpStatus.OK)
     @Post('signin')
     login(@Body() dto:LoginDto){
         let data = this.authService.login(dto);
