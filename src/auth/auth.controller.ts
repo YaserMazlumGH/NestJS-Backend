@@ -1,6 +1,7 @@
 import { AuthService } from './auth.service';
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req } from "@nestjs/common";
 import { LoginDto, RegisterDto } from './dto';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController{
@@ -8,7 +9,8 @@ export class AuthController{
     
     @HttpCode(HttpStatus.OK)
     @Post('signin')
-    login(@Body() dto:LoginDto){
+    login(@Body() dto:LoginDto,@Req() req:Request){
+        //console.log({ req })
         let data = this.authService.login(dto);
         return data;
     }
