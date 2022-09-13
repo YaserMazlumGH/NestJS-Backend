@@ -2,11 +2,12 @@ import { HttpCode, HttpStatus } from '@nestjs/common';
 import { BookmarkEditDto } from './model/bookmark-edit.dto';
 import { BookmarkCreateDto } from './model/bookmark-create.dto';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { GetUser } from '../auth/decorator';
 import { JwtGuard } from '../auth/guard/jwt.guard';
 import { BookmarkService } from './bookmark.service';
 
+@ApiTags('Boorkmarks')
 @UseGuards(JwtGuard)
 @Controller('bookmarks')
 export class BookmarkController {
